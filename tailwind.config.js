@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {},
+    fontFamily : {
+      danceScirpt : ['Dancing Script', 'cursive']
+    }
   },
   plugins: [],
 }
