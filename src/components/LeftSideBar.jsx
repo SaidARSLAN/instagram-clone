@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 const LeftSideBar = () => {
   return (
-    <section className="fixed top-0 bg-white w-full py-4 px-0 z-10">
+    <section className="fixed top-0 bg-white w-full py-4 px-0 z-10 border-b-2">
       <nav className="w-full flex items-center px-2 space-x-6">
         <div>
           <h1 className="flex-none flex w-full gap-1 text-2xl font-danceScirpt cursor-pointer hover:bg-gray-200 duration-200 p-1 items-center justify-center text-center">
