@@ -1,20 +1,50 @@
-import { createContext } from "react";
-
+import axios from "axios";
+import { createContext, useEffect, useState } from "react";
 
 
 const GlobalContext = createContext();
 
 
 export function Provider ({children}) {
+    const [img, setImg] = useState()
+    const [comment, setComment] = useState("")
+    const [tags, setTags] = useState("")
+    const [posts,setPosts] = useState([]);
+    const [loading,setLoading] = useState(false)
+    const savePosts = async () => {
+        if (img !== ""  && comment !== "" && tags !== "") {
+            await axios.post("http://localhost:3000/posts", {
+                img,
+                comment,
+                tags
+            })
+        }
+        
+    }
 
+    const getPosts = async () => {
+        setLoading(true);
+        const request = await axios.get("http://localhost:3000/posts");
+        setPosts(request.data);
+        setLoading(false)
+    }
+    useEffect(() => {
+        savePosts();
+    },[img,comment,tags])
+    
+    useEffect(() => {
+        getPosts();
+    },[])
 
     const sendPostData = (imgPath,comments,hashtags) => {
-        console.log(imgPath,comments,hashtags);
+        setImg(imgPath);
+        setComment(comments);
+        setTags(hashtags);
     }
 
 
     return (
-        <GlobalContext.Provider value={{sendPostData}}>
+        <GlobalContext.Provider value={{sendPostData,posts}}>
             {children}
         </GlobalContext.Provider>
     )
