@@ -25,8 +25,8 @@ const Post = () => {
             <div className='flex flex-col mb-20'>
             <div className='flex justify-between'>
               <div className='flex space-x-2'>
-              <img src={post.profile} className='w-10 h-10 rounded-full border-2 p-1 border-gray-300'/>
-              <p className='text-sm flex items-center justify-center'>{post.username}</p>
+              <img src={post.profile} className='w-10 h-10 rounded-full border-2 p-1 border-gray-300 cursor-pointer'/>
+              <p className='text-sm flex items-center justify-center cursor-pointer hover:text-gray-600 duration-200'>{post.username}</p>
               <li className='mt-2'></li>
               <p className='flex items-center justify-center text-gray-400'>1g</p>
               </div>
