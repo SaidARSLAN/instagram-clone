@@ -2,9 +2,7 @@ import { faHome, faMessage, faPlay, faPlus, faSearch } from '@fortawesome/free-s
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
 import { userone } from '../contents'
-import { Route,Routes,Link,NavLink } from 'react-router-dom'
-import CreatePost from '../pages/CreatePost'
-import MainSection from './MainSection'
+import { NavLink } from 'react-router-dom'
 
 const BottomSideBar = () => {
   return (

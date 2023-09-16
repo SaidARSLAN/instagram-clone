@@ -1,8 +1,12 @@
 import { faChevronDown, faHeart, faPlus } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { photone, userone} from "../contents"
+import { anotherUsers, photone, userone} from "../contents"
+import { useRef, useState } from "react"
 
 const LeftSideBar = () => {
+  const [search, setSearch] = useState("");
+
+
 
   const handleDropDown = () => {
       if(document.querySelector("#dropdown").classList.contains("flex")) {
@@ -13,7 +17,28 @@ const LeftSideBar = () => {
         document.querySelector("#dropdown").classList.remove("hidden")
         document.querySelector("#dropdown").classList.add("flex")
       }
+  } 
+  const searchRef = useRef();
+  const handleSearch = () => {
+    if (searchRef.current.classList.contains("hidden")) {
+      searchRef.current.classList.remove("hidden");
+      searchRef.current.classList.add("flex");
+    }
+    
   }
+ 
+  document.body.addEventListener("click",(event) => {
+    if (event.target.id !== "dontpush") {
+      searchRef.current.classList.remove("flex");
+      searchRef.current.classList.add("hidden");
+    }
+  })
+
+  const afterFilteredUsers = anotherUsers.filter((user) => user.username.includes(search));
+  const handleFilter = (event) => {
+      setSearch(event.target.value)
+
+  } 
 
   return (
     <section className="bg-white fixed w-full py-4 px-0 z-10 border-b-2">
@@ -30,7 +55,14 @@ const LeftSideBar = () => {
           </ul>
         </div>
         <div className="flex-1 flex items-center justify-center space-x-6">
-          <input placeholder="Search" className="px-4 py-1 rounded-lg w-[240px] bg-gray-200"></input>
+          <div className="flex flex-col relative">
+          <input placeholder="Search" className="px-4 py-1 rounded-lg w-[240px] bg-gray-200" value={search} onChange={handleFilter} onClick={handleSearch} id="dontpush"></input>
+          <ul className="absolute top-10 ml-2 hidden flex-col space-y-2 bg-gray-200 w-full rounded-lg px-2 py-2" ref={searchRef}>
+            {afterFilteredUsers.map((user) => {
+                return (<li className="flex space-x-2 cursor-pointer hover:bg-gray-500 duration-200 rounded-lg"><img src={user.photo} className="w-10 h-10 rounded-full" /><p className="text-lg text-center mt-1">{user.username}</p></li>)
+            })}
+          </ul>
+          </div>
           <FontAwesomeIcon icon={faHeart} className="text-xl hover:text-2xl cursor-pointer duration-200 hover:text-rose-600">
           </FontAwesomeIcon>
         </div>

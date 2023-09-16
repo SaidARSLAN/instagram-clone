@@ -10,7 +10,9 @@ export function Provider ({children}) {
     const [comment, setComment] = useState("")
     const [tags, setTags] = useState("")
     const [posts,setPosts] = useState([]);
-    const [loading,setLoading] = useState(false)
+    const [loading,setLoading] = useState(false);
+
+    
     const savePosts = async () => {
         if (img !== ""  && comment !== "" && tags !== "") {
             await axios.post("http://localhost:3000/posts", {

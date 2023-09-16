@@ -4,6 +4,7 @@ import LeftSideBar from './components/LeftSideBar'
 import MainSection from './components/MainSection'
 import { Route,Routes } from 'react-router'
 import CreatePost from './pages/CreatePost'
+import Notifications from './pages/Notifications'
 import { Provider } from './context/MainContext'
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
       <Routes>
         <Route path="/" element={<MainSection />}></Route>
         <Route path='/createpost' element={<CreatePost />}></Route>
+        <Route path="/notifications" element={<Notifications />}></Route>
       </Routes>
     </main>
     </Provider>
