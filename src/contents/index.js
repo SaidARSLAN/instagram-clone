@@ -17,3 +17,5 @@ export const posts = [{username : "saidrslnq",profile:userone,postPhoto : photon
 export {userone,photone,usertwo,phototwo}
 
 export const anotherUsers = [{username:"mehtaq009",photo:user1},{username:"user123",photo:user2}, {username:"johndoe45",photo:user3}, {username:"sarahsmith22",photo:user4}, {username:"alex_miller",photo:user5}, {username:"laurabrown78",photo:usertwo}]
+
+export const notifications = ["Your photo just received 100 likes", "50 people have viewed your story", "You have a new follower", "5 new comments on your latest post", "Your video has reached 1,000 views", "Someone mentioned you in their story", "Your friend tagged you in a post", "You've received a new message", "Don't forget, your friend's birthday is tomorrow!", "Your post is trending in the Explore page"]

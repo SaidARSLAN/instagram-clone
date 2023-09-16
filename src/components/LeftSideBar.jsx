@@ -2,6 +2,7 @@ import { faChevronDown, faHeart, faPlus } from "@fortawesome/free-solid-svg-icon
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { anotherUsers, photone, userone} from "../contents"
 import { useRef, useState } from "react"
+import { NavLink } from "react-router-dom"
 
 const LeftSideBar = () => {
   const [search, setSearch] = useState("");
@@ -63,8 +64,8 @@ const LeftSideBar = () => {
             })}
           </ul>
           </div>
-          <FontAwesomeIcon icon={faHeart} className="text-xl hover:text-2xl cursor-pointer duration-200 hover:text-rose-600">
-          </FontAwesomeIcon>
+          <NavLink to="/notifications"><FontAwesomeIcon icon={faHeart} className="text-xl hover:text-2xl cursor-pointer duration-200 hover:text-rose-600">
+          </FontAwesomeIcon></NavLink>
         </div>
       </nav>
       </section>
