@@ -6,6 +6,7 @@ import { Route,Routes } from 'react-router'
 import CreatePost from './pages/CreatePost'
 import Notifications from './pages/Notifications'
 import { Provider } from './context/MainContext'
+import SearchSection from './pages/SearchSection'
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
         <Route path="/" element={<MainSection />}></Route>
         <Route path='/createpost' element={<CreatePost />}></Route>
         <Route path="/notifications" element={<Notifications />}></Route>
+        <Route path="/searchsection" element={<SearchSection />}></Route>
       </Routes>
     </main>
     </Provider>

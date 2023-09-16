@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from 'react'
+import React, { useContext, useRef, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faComment, faHeart, faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 import GlobalContext from '../context/MainContext'
@@ -6,9 +6,7 @@ import { userone } from '../contents'
 import Modal from './Modal'
 
 const Post = () => {
-  const {posts} = useContext(GlobalContext);
-
-
+  const {posts,editControl,setEdittedData,edittedData,sendLastEditData} = useContext(GlobalContext);
 
     const handleThreePoints = () => {
         const modal = document.getElementById("modal");
@@ -21,6 +19,11 @@ const Post = () => {
         if (event.target.id == "myModal") {
             document.getElementById("modal").classList.remove("flex");
             document.getElementById("modal").classList.add("hidden");}
+    }
+
+    const handleEditSubmit = (e) => {
+      e.preventDefault();
+      sendLastEditData(edittedData);
     }
 
   return (
@@ -55,12 +58,15 @@ const Post = () => {
             </div>
             <div className='mt-2 px-2'>
               <strong><p>saidrslnq</p></strong>
-              <p>{post.comment}</p>
+              <p>{editControl ? <form className='flex gap-3'>
+                <input placeholder='Rewrite Comment' className='w-[200px] rounded-lg px-2 py-1 h-10 border-2 border-black' value={edittedData} onChange={e => setEdittedData(e.target.value)}></input>
+                <button className='bg-blue-500 px-2 rounded-lg text-white hover:bg-blue-800 duration-200' onClick={handleEditSubmit}>Submit</button>
+              </form> : post.comment}</p>
             </div>
             <div>
               <input placeholder='add comments' className='px-2'></input>
             </div>
-            <Modal id={post.id}/>
+            <Modal id={post.id} comment={post.comment}/>
           </div>
           )
         })}

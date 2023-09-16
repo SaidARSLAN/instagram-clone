@@ -30,13 +30,15 @@ const Notifications = () => {
         <h3 className='text-lg'><strong>Recommendations for you</strong></h3>
         <div>
             {anotherUsers.map((user) => {
-                return (<div className='flex justify-between gap-x-2 py-3 px-2 mt-1 hover:bg-gray-400 duration-200'>
+                return (
+                <div className='flex justify-between gap-x-2 py-3 px-2 mt-1 hover:bg-gray-400 duration-200'>
                     <div className='flex gap-x-2 mt-1'>
-                    <img src={user.photo}  className='w-[40px] h-[40px] rounded-full'/>
-                    <strong><p className='text-center flex justify-center mt-2 text-gray-700 items-center text-sm cursor-pointer hover:text-black duration-200'>{user.username}</p></strong>
+                    <img src={user.photo}  className='w-[50px] h-[50px] rounded-full border-4 border-gray-500'/>
+                    <strong><p className='text-center flex justify-center mt-4 text-gray-700 items-center text-sm cursor-pointer hover:text-black duration-200'>{user.username}</p></strong>
                     </div>
                     <button className='bg-blue-500 text-white px-2 rounded-lg hover:bg-blue-700 duration-200' onClick={handleFollow}>Follow</button>
-                </div>)
+                </div>
+                )
             })}
         </div>
         </div>
