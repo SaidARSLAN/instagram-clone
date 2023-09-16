@@ -1,6 +1,5 @@
 import React, { useContext, useState } from 'react'
 import GlobalContext from '../context/MainContext';
-
 const CreatePost = () => {
     const [imgPath, setImgPath] = useState(null);
     const [comment, setComment] = useState("");

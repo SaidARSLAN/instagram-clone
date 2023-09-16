@@ -6,7 +6,6 @@ const MainSection = () => {
   return (
     <section className='absolute top-28 px-2'>
         <Post />
-        <Modal />
     </section>
   )
 }

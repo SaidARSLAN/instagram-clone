@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import GlobalContext from '../context/MainContext';
 
-const Modal = () => {
-
+const Modal = ({id}) => {
+    const {sendDeletedData} = useContext(GlobalContext);
     const handleClose = () => {
         document.getElementById("modal").classList.remove("flex");
         document.getElementById("modal").classList.add("hidden");
+    }
+    const handleDelete = (event) => {
+        sendDeletedData(id)
     }
 
   return (
@@ -16,7 +20,7 @@ const Modal = () => {
         <div className='flex flex-col gap-2 items-center justify-center'>
             <h3 className='text-3xl text-white bg-gray-600 px-12 py-2 rounded-lg w-full text-center cursor-pointer hover:bg-gray-300 duration-200 hover:text-black'>Edit</h3>
             <h3 className='text-3xl text-white bg-gray-600 px-12 py-2 rounded-lg w-full text-center cursor-pointer hover:bg-gray-300 duration-200 hover:text-black'>Send</h3>
-            <h3 className='text-3xl text-white bg-gray-600 px-12 py-2 rounded-lg w-full text-center cursor-pointer hover:bg-gray-300 duration-200 hover:text-black'>Delete</h3>
+            <h3 className='text-3xl text-white bg-gray-600 px-12 py-2 rounded-lg w-full text-center cursor-pointer hover:bg-gray-300 duration-200 hover:text-black' onClick={handleDelete}>Delete</h3>
         </div>
         </div>
     </div>

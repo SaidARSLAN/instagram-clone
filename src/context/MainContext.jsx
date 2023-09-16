@@ -41,10 +41,16 @@ export function Provider ({children}) {
         setComment(comments);
         setTags(hashtags);
     }
-
+    const sendDeletedData = (id) => {
+        axios.delete(`http://localhost:3000/posts/${id}`);
+        const afterDeletedPosts = posts.filter((post) => {
+                return (post.id !==id);
+        })
+        setPosts(afterDeletedPosts);
+    }
 
     return (
-        <GlobalContext.Provider value={{sendPostData,posts}}>
+        <GlobalContext.Provider value={{sendPostData,posts,sendDeletedData}}>
             {children}
         </GlobalContext.Provider>
     )
