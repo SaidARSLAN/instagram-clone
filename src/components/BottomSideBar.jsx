@@ -20,7 +20,7 @@ const BottomSideBar = () => {
             <a href="/reels"><FontAwesomeIcon icon={faPlay} className='text-2xl hover:text-gray-500 duration-200'></FontAwesomeIcon></a>
             <NavLink to="/createpost"><FontAwesomeIcon icon={faPlus} className='text-2xl hover:text-gray-500 duration-200'></FontAwesomeIcon></NavLink>
             <a href="/messages"><FontAwesomeIcon icon={faMessage} className='text-2xl hover:text-gray-500 duration-200'></FontAwesomeIcon></a>
-            <img src={userone} className='w-[25px] h-[25px] rounded-full border-2 border-gray-400' />
+            <NavLink to="/myprofile"><img src={userone} className='w-[25px] h-[25px] rounded-full border-2 border-gray-400'/></NavLink>
         </nav>
     </section>
   )

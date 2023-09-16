@@ -1,4 +1,3 @@
-import { faL } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
 
@@ -65,16 +64,16 @@ export function Provider ({children}) {
                 axios.put(`http://localhost:3000/posts/${tempID}`,{
                 img : post.img,
                 tags : post.tags,
-                comment : LastData,
+                comment : lastEdittedData,
                 id : post.id
             })
                 return {
                 id : post.id,
                 img : post.img,
-                comment : LastData }
+                comment : lastEdittedData }
             }
         })
-        setPosts(afterEditedData);
+        setPosts([...posts, afterEditedData]);
         setEditControl(false);
     }
 

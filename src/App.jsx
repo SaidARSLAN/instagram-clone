@@ -7,6 +7,8 @@ import CreatePost from './pages/CreatePost'
 import Notifications from './pages/Notifications'
 import { Provider } from './context/MainContext'
 import SearchSection from './pages/SearchSection'
+import SendPost from './pages/SendPost'
+import Profile from './pages/Profile'
 
 function App() {
 
@@ -24,6 +26,8 @@ function App() {
         <Route path='/createpost' element={<CreatePost />}></Route>
         <Route path="/notifications" element={<Notifications />}></Route>
         <Route path="/searchsection" element={<SearchSection />}></Route>
+        <Route path="/sendpost" element={<SendPost />}></Route>
+        <Route path="/myprofile" element={<Profile />}></Route>
       </Routes>
     </main>
     </Provider>

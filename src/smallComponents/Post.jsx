@@ -4,26 +4,39 @@ import { faComment, faHeart, faPaperPlane } from '@fortawesome/free-solid-svg-ic
 import GlobalContext from '../context/MainContext'
 import { userone } from '../contents'
 import Modal from './Modal'
+import { NavLink } from 'react-router-dom'
 
 const Post = () => {
   const {posts,editControl,setEdittedData,edittedData,sendLastEditData} = useContext(GlobalContext);
-
+  const [commentConrol,setCommentControl] = useState(false);
+  const [comments,setComments] = useState([]);
+  const [comment,setComment] = useState("");
     const handleThreePoints = () => {
         const modal = document.getElementById("modal");
         modal.classList.remove("hidden")
         modal.classList.add("flex");
     }
 
-    window.onclick = function(event) {
-        console.log(event.target.id)
-        if (event.target.id == "myModal") {
-            document.getElementById("modal").classList.remove("flex");
-            document.getElementById("modal").classList.add("hidden");}
-    }
 
     const handleEditSubmit = (e) => {
       e.preventDefault();
       sendLastEditData(edittedData);
+    }
+
+
+    const handleLike = (event) => {
+      console.log("test");
+        event.target.classList.toggle("text-rose-400")
+    }
+
+    const addComment = () => {
+      setCommentControl(true);
+    }
+
+    const sendComment = (event) => {
+      event.preventDefault();
+      setComments([...comments,comment]);
+      setCommentControl(false);
     }
 
   return (
@@ -52,11 +65,17 @@ const Post = () => {
                 </div>
             </div>
             <div className='flex mt-2 px-2 space-x-4'>
-              <FontAwesomeIcon icon={faHeart} className='text-2xl hover:text-gray-600 duration-200 cursor-pointer'></FontAwesomeIcon>
-              <FontAwesomeIcon icon={faComment}  className='text-2xl hover:text-gray-600 duration-200 cursor-pointer'></FontAwesomeIcon>
-              <FontAwesomeIcon icon={faPaperPlane}  className='text-2xl hover:text-gray-600 duration-200 cursor-pointer'></FontAwesomeIcon>
+              <FontAwesomeIcon icon={faHeart} className='text-2xl hover:text-gray-600 duration-200 cursor-pointer' onClick={handleLike}></FontAwesomeIcon>
+              <FontAwesomeIcon icon={faComment}  className='text-2xl hover:text-gray-600 duration-200 cursor-pointer' onClick={addComment}></FontAwesomeIcon>
+              <NavLink to="/sendpost"><FontAwesomeIcon icon={faPaperPlane}  className='text-2xl hover:text-gray-600 duration-200 cursor-pointer'></FontAwesomeIcon></NavLink>
             </div>
             <div className='mt-2 px-2'>
+              {commentConrol ? <form className='flex gap-3'>
+                <input type="text" placeholder='comment...' className='w-[200px] rounded-lg px-2 py-1 h-10 border-2 border-black' value={comment} onChange={e => setComment(e.target.value)} />
+              <button className='bg-blue-500 px-4 rounded-lg text-white hover:bg-blue-800 duration-200' onClick={sendComment}>Add</button>
+              </form> : <div>{comments.map((c) => {
+                    return <p><strong>mertansq92 </strong> {c}</p>
+              })}</div>}
               <strong><p>saidrslnq</p></strong>
               <p>{editControl ? <form className='flex gap-3'>
                 <input placeholder='Rewrite Comment' className='w-[200px] rounded-lg px-2 py-1 h-10 border-2 border-black' value={edittedData} onChange={e => setEdittedData(e.target.value)}></input>
@@ -65,8 +84,8 @@ const Post = () => {
             </div>
             <div>
               <input placeholder='add comments' className='px-2'></input>
+              <Modal id={post.id} comment={post.comment}/>
             </div>
-            <Modal id={post.id} comment={post.comment}/>
           </div>
           )
         })}
