@@ -11,10 +11,6 @@ export function Provider ({children}) {
     const [tags, setTags] = useState("")
     const [posts,setPosts] = useState([]);
     const [loading,setLoading] = useState(false);
-    const [editControl,setEditControl] = useState(false);
-    const [edittedData,setEdittedData] = useState("");
-    const [lastEdittedData,setLastEdittedData] = useState("");
-    const [tempID,setTempID] = useState("");
     const savePosts = async () => {
         if (img !== ""  && comment !== "" && tags !== "") {
             await axios.post("http://localhost:3000/posts", {
@@ -52,35 +48,45 @@ export function Provider ({children}) {
         })
         setPosts(afterDeletedPosts);
     }
-    const sendEditedData = (id,comment) => {
-        setEditControl(true);
-        setTempID(id);
-        setEdittedData(comment);
-        debugger;
-    }
-    const sendLastEditData = (LastData) => {
-        debugger;
-        setLastEdittedData(LastData);
-        const afterEditedData = posts.map((post) => {
-            if (post.id === tempID) {
-                axios.put(`http://localhost:3000/posts/${tempID}`,{
+    const sendEditedData = (id,explain) => {
+        
+        const afterEditedPosts = posts.map((post) => {
+            if (post.id === id) {
+                axios.put(`http://localhost:3000/posts/${id}`,{
+            img : post.img,
+            comment : explain,
+            tags : post.tags,
+            id : post.id
+        })
+            return ({
                 img : post.img,
+                comment : explain,
                 tags : post.tags,
-                comment : LastData,
                 id : post.id
             })
-                return {
-                id : post.id,
-                img : post.img,
-                comment : LastData }
-            }
+        }
+        else {
+            axios.put(`http://localhost:3000/posts/${id}`,{
+            img : post.img,
+            comment : post.comment,
+            tags : post.tags,
+            id : post.id
         })
-        setPosts([...posts, afterEditedData]);
-        setEditControl(false);
+            return (
+                {
+                    img : post.img,
+                    comment : post.comment,
+                    tags : post.tags,
+                    id : post.id
+                }
+            )
+            
+        }
+        })
+        setPosts(afterEditedPosts);
     }
-
     return (
-        <GlobalContext.Provider value={{sendPostData,posts,sendDeletedData,sendEditedData,editControl,edittedData,setEdittedData,sendLastEditData}}>
+        <GlobalContext.Provider value={{sendPostData,posts,sendDeletedData,sendEditedData}}>
             {children}
         </GlobalContext.Provider>
     )

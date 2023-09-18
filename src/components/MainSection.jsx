@@ -1,6 +1,5 @@
 import React from 'react'
 import Post from '../smallComponents/Post'
-import Modal from '../smallComponents/Modal'
 
 const MainSection = () => {
   return (
