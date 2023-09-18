@@ -7,9 +7,8 @@ const CreatePost = () => {
 
     const {sendPostData} = useContext(GlobalContext);
 
-    const handleClick = (event) => {
+    const handleClick = () => {
         if (comment !== "" && hashtags !== "" && imgPath !== "") {
-            event.preventDefault();
             sendPostData(imgPath,comment,hashtags);
             setImgPath(null);
             setComment("");
