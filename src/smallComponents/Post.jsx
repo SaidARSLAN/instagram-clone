@@ -19,6 +19,7 @@ const Post = () => {
 
 
     const handleEditSubmit = (e) => {
+      debugger;
       e.preventDefault();
       sendLastEditData(edittedData);
     }

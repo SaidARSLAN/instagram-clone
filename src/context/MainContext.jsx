@@ -56,21 +56,23 @@ export function Provider ({children}) {
         setEditControl(true);
         setTempID(id);
         setEdittedData(comment);
+        debugger;
     }
     const sendLastEditData = (LastData) => {
+        debugger;
         setLastEdittedData(LastData);
         const afterEditedData = posts.map((post) => {
             if (post.id === tempID) {
                 axios.put(`http://localhost:3000/posts/${tempID}`,{
                 img : post.img,
                 tags : post.tags,
-                comment : lastEdittedData,
+                comment : LastData,
                 id : post.id
             })
                 return {
                 id : post.id,
                 img : post.img,
-                comment : lastEdittedData }
+                comment : LastData }
             }
         })
         setPosts([...posts, afterEditedData]);

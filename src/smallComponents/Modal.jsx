@@ -12,6 +12,7 @@ const Modal = ({id,comment}) => {
     }
 
     const handleEdit = () => {
+        debugger;
         sendEditedData(id,comment);
         }
 
