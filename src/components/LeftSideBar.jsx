@@ -40,7 +40,7 @@ const LeftSideBar = () => {
   } 
 
   return (
-    <section className="bg-white fixed w-full py-4 px-0 z-10 border-b-2">
+    <section className="bg-white fixed w-full py-4 px-0 z-10 border-b-2 lg:hidden">
       <nav className="w-full flex items-center px-2 space-x-2">
         <div className="flex flex-col justify-center items-center">
           <h1 className="flex-none flex w-full gap-1 text-2xl font-danceScirpt cursor-pointer hover:bg-gray-200 duration-200 p-1 items-center justify-center text-center group rounded-lg"
