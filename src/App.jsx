@@ -9,6 +9,7 @@ import { Provider } from './context/MainContext'
 import SearchSection from './pages/SearchSection'
 import SendPost from './pages/SendPost'
 import Profile from './pages/Profile'
+import RightSideBar from './components/RightSideBar'
 
 function App() {
 
